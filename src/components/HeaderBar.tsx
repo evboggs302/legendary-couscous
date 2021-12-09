@@ -27,6 +27,16 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+  alignItems: "center",
+  paddingTop: theme.spacing(1),
+  paddingBottom: theme.spacing(2),
+  // Override media queries injected by theme.mixins.toolbar
+  "@media all": {
+    minHeight: 128,
+  },
+}));
+
 function HeaderBar({
   open,
   toggleDrawer,
@@ -36,7 +46,7 @@ function HeaderBar({
 }) {
   return (
     <AppBar position="absolute" open={open}>
-      <Toolbar
+      <StyledToolbar
         sx={{
           backgroundColor: (theme) =>
             theme.palette.mode === "dark"
@@ -68,7 +78,7 @@ function HeaderBar({
             <Notifications />
           </Badge>
         </IconButton>
-      </Toolbar>
+      </StyledToolbar>
     </AppBar>
   );
 }

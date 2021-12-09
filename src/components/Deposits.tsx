@@ -6,15 +6,22 @@ function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
 }
 
+let formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+const randomNumber = Math.random() * (13000 - 2468) + 2468;
+
 export default function Deposits() {
   return (
     <>
       <Title>Recent Movement</Title>
       <Typography component="p" variant="h4">
-        $3,024.47
+        {formatter.format(randomNumber)}
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
-        on 7 December, 2021
+        on 9 December, 2021
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>
