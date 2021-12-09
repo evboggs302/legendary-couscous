@@ -50,7 +50,7 @@ function Copyright(props: any) {
   );
 }
 
-const drawerWidth: number = 240;
+// const drawerWidth: number = 240;
 
 const Drawer = styled(MuiDrawer)(({ theme }) => ({
   "& .MuiDrawer-paper": {
