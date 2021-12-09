@@ -1,7 +1,7 @@
 import { Toolbar, IconButton, Typography, Badge } from "@mui/material/";
-import { Notifications, Menu } from "@material-ui/icons/";
+import { Notifications } from "@material-ui/icons/";
 import { styled } from "@mui/material/styles";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 
 const drawerWidth: number = 240;
@@ -38,13 +38,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   },
 }));
 
-function HeaderBar({
-  open,
-  toggleDrawer,
-}: {
-  open: boolean;
-  toggleDrawer: React.MouseEventHandler<HTMLButtonElement>;
-}) {
+function HeaderBar({ open }: { open: boolean }) {
   return (
     <AppBar position="absolute" open={open}>
       <StyledToolbar
@@ -55,18 +49,6 @@ function HeaderBar({
               : theme.palette.grey[900],
           pr: "24px", // keep right padding when drawer closed
         }}>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="open drawer"
-          onClick={toggleDrawer}
-          sx={{
-            marginRight: "36px",
-            ...(open && { display: "none" }),
-          }}>
-          <Menu />
-        </IconButton>
-
         <Typography variant="h4" color="inherit" noWrap sx={{ flexGrow: 1 }}>
           Lady Gaga's Relationship
           <Typography

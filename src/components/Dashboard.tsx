@@ -1,6 +1,6 @@
 import * as React from "react";
 import logo from "../logo.svg";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import { styled, createTheme, ThemeProvider } from "@material-ui/core";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -8,20 +8,28 @@ import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-// import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
-// import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-// import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import HomeIcon from "@material-ui/icons/Home";
+import PublicIcon from "@material-ui/icons/Public";
+import SyncAltIcon from "@material-ui/icons/SyncAlt";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import CallSplitIcon from "@material-ui/icons/CallSplit";
+import NotesIcon from "@material-ui/icons/Notes";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
+import DataUsageIcon from "@mui/icons-material/DataUsage";
+import { secondaryListItems } from "./listItems";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Accounts from "./Accounts";
 import HeaderBar from "./HeaderBar";
+import { useAppSelector, useAppDispatch } from "../dux/store";
+import { toggleInsights } from "../dux/insightsSlice";
 
 function Copyright(props: any) {
   return (
@@ -44,29 +52,21 @@ function Copyright(props: any) {
 
 const drawerWidth: number = 240;
 
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+const Drawer = styled(MuiDrawer)(({ theme }) => ({
   "& .MuiDrawer-paper": {
     position: "relative",
     whiteSpace: "nowrap",
-    width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
     boxSizing: "border-box",
-    ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
+    overflowX: "hidden",
+    overflowY: "auto",
+    width: theme.spacing(7),
+    [theme.breakpoints.up("sm")]: {
+      width: theme.spacing(9),
+    },
   },
 }));
 
@@ -83,16 +83,17 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 }));
 
 function DashboardContent() {
-  const [open, setOpen] = React.useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
+  const open = true;
+
+  const { insights } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+  console.log(insights);
 
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <HeaderBar open={open} toggleDrawer={toggleDrawer} />
+        <HeaderBar open={open} />
         <Drawer variant="permanent" open={true} sx={{ overflowY: "auto" }}>
           <StyledToolbar
             sx={{
@@ -102,12 +103,58 @@ function DashboardContent() {
                   : theme.palette.grey[900],
             }}>
             <img alt="" src={logo} style={{ maxHeight: "45px" }} />
-            {/* <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon style={{ fill: "white" }} />
-            </IconButton> */}
           </StyledToolbar>
           <Divider />
-          <List>{mainListItems}</List>
+          <List>
+            <ListItem button>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <AssignmentIndIcon />
+              </ListItemIcon>
+              <ListItemText primary="Contact Info" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <NotesIcon />
+              </ListItemIcon>
+              <ListItemText primary="Notes" />
+            </ListItem>
+            <ListItem button onClick={(e) => dispatch(toggleInsights())}>
+              <ListItemIcon>
+                <DataUsageIcon />
+              </ListItemIcon>
+              <ListItemText primary="Insights" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <CallSplitIcon />
+              </ListItemIcon>
+              <ListItemText primary="Opportunities" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <PublicIcon />
+              </ListItemIcon>
+              <ListItemText primary="Online Accts" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <AccountBalanceIcon />
+              </ListItemIcon>
+              <ListItemText primary="Tax Forms" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <SyncAltIcon />
+              </ListItemIcon>
+              <ListItemText primary="AM Center" />
+            </ListItem>
+          </List>
           <Divider />
           <List>{secondaryListItems}</List>
           <Divider />

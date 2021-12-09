@@ -1,11 +1,15 @@
+import { Provider } from "react-redux";
+import store from "./dux/store";
 import Dashboard from "./components/Dashboard";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Dashboard />
+      </div>
+    </Provider>
   );
 }
 
