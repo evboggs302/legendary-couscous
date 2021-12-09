@@ -17,10 +17,10 @@ import Link from "@mui/material/Link";
 // import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 // import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems, infoListItems } from "./listItems";
+import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
-import Orders from "./Orders";
+import Accounts from "./Accounts";
 import HeaderBar from "./HeaderBar";
 
 function Copyright(props: any) {
@@ -93,7 +93,7 @@ function DashboardContent() {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <HeaderBar open={open} toggleDrawer={toggleDrawer} />
-        <Drawer variant="permanent" open={true}>
+        <Drawer variant="permanent" open={true} sx={{ overflowY: "auto" }}>
           <StyledToolbar
             sx={{
               backgroundColor: (theme) =>
@@ -106,8 +106,6 @@ function DashboardContent() {
               <ChevronLeftIcon style={{ fill: "white" }} />
             </IconButton> */}
           </StyledToolbar>
-          <Divider />
-          <List>{infoListItems}</List>
           <Divider />
           <List>{mainListItems}</List>
           <Divider />
@@ -126,7 +124,7 @@ function DashboardContent() {
             overflow: "auto",
           }}>
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, marginTop: "80px" }}>
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, paddingTop: "80px" }}>
             <Grid container spacing={3}>
               {/* Chart */}
               <Grid item xs={12} md={8} lg={9}>
@@ -152,10 +150,10 @@ function DashboardContent() {
                   <Deposits />
                 </Paper>
               </Grid>
-              {/* Recent Orders */}
+              {/* Recent Accounts */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Orders />
+                  <Accounts />
                 </Paper>
               </Grid>
             </Grid>

@@ -54,15 +54,6 @@ const rows = [
     false
   ),
   createData(
-    3,
-    "Gardner, Honey",
-    "99761460 (1-0)(2-8)(4-4)(5-1)",
-    getRandomnumber(),
-    "SELECT - Ind 529 Plan",
-    false,
-    false
-  ),
-  createData(
     4,
     "Gant, Kenny",
     "99755736 (1-4)",
@@ -72,7 +63,7 @@ const rows = [
     false
   ),
   createData(
-    4,
+    5,
     "Gaga, Lady",
     "99755736 (1-3)",
     getRandomnumber(),

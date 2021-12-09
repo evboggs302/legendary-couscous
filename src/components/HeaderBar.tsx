@@ -1,6 +1,7 @@
 import { Toolbar, IconButton, Typography, Badge } from "@mui/material/";
 import { Notifications, Menu } from "@material-ui/icons/";
 import { styled } from "@mui/material/styles";
+import SearchBar from "./SearchBar";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 
 const drawerWidth: number = 240;
@@ -65,14 +66,19 @@ function HeaderBar({
           }}>
           <Menu />
         </IconButton>
-        <Typography
-          component="h1"
-          variant="h6"
-          color="inherit"
-          noWrap
-          sx={{ flexGrow: 1 }}>
-          Dashboard
+
+        <Typography variant="h4" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+          Lady Gaga's Relationship
+          <Typography
+            variant="subtitle2"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}>
+            12555 Manchester Rd., St. Louis MO 63131-3710
+          </Typography>
         </Typography>
+
+        {/* <SearchBar /> */}
         <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">
             <Notifications />
