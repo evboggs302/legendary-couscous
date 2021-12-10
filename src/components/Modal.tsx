@@ -1,4 +1,4 @@
-import { Modal, TextInput, Loading } from "carbon-components-react";
+import { Modal, Loading } from "carbon-components-react";
 import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../dux/store";
 import { toggleInsights } from "../dux/insightsSlice";
