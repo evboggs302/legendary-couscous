@@ -34,43 +34,149 @@ const InsightsModal = () => {
             style={{
               width: "100%",
               display: "flex",
-              flexDirection: "row",
               justifyContent: "center",
             }}>
             <div>Top client suggestions based on their perceived needs.</div>
           </div>
           <br />
-          <div style={{}}>
+          <div>
+            <span style={{ fontStyle: "italic" }}>Client Info Summary:</span>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}>
+              <span>Name: Lady Gaga</span>
+              <span>Age: 30</span>
+              <span>Investible Assets: $50,000</span>
+              <span>Share of Wallet: 20%</span>
+              <span>Living in Retirement: No</span>
+              <span>Kids: 2</span>
+              <span>Estate Need: N/A</span>
+              <span>Wellness Score: 50</span>
+            </div>
+          </div>
+          <br />
+          <div>
             <span style={{ fontWeight: "bold", fontStyle: "italic" }}>
               Suggested Conversation 1: {Data[0].Goals_1}
             </span>
-            <div>
-              <span></span>
-              <span></span>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+              }}>
+              <span style={{ display: "flex", flexDirection: "column" }}>
+                <span>
+                  <span
+                    style={{
+                      textDecoration: "underline",
+                      fontStyle: "italic",
+                    }}>
+                    Potential Question:
+                  </span>
+                  <br />
+                  <span>{Data[0]["EQ Questions_1"]}</span>
+                </span>
+                <br />
+                <span>
+                  <span
+                    style={{
+                      fontStyle: "italic",
+                      textDecoration: "underline",
+                    }}>
+                    Resources:
+                  </span>
+                  <br />
+                  <span>
+                    Review <a>WEB615954</a> for the 'Preparing for the
+                    Unexpected IPC Guidance' report.
+                  </span>
+                </span>
+              </span>
+              <div>
+                <PieChart percentHelpful={Data[0].Field_Helpfulness_1} />
+              </div>
             </div>
-            <PieChart percentHelpful={Data[0].Field_Helpfulness_1} />
           </div>
           <br />
-          <div style={{}}>
+          <div>
             <span style={{ fontWeight: "bold", fontStyle: "italic" }}>
               Suggested Conversation 2: {Data[0].Goals_2}
             </span>
-            <div>
-              <span></span>
-              <span></span>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <span style={{ display: "flex", flexDirection: "column" }}>
+                <span>
+                  <span
+                    style={{
+                      fontStyle: "italic",
+                      textDecoration: "underline",
+                    }}>
+                    Potential Question:
+                  </span>
+                  <br />
+                  <span>{Data[0]["EQ Questions_2"]}</span>
+                </span>
+                <br />
+                <span>
+                  <span
+                    style={{
+                      fontStyle: "italic",
+                      textDecoration: "underline",
+                    }}>
+                    Resources:
+                  </span>
+                  <br />
+                  <span>
+                    Review <a>WEB147334</a> for the 'Paying for Education' Main
+                    Page.
+                  </span>
+                </span>
+              </span>
+              <div>
+                <PieChart percentHelpful={Data[0].Field_Helpfulness_2} />
+              </div>
             </div>
-            <PieChart percentHelpful={Data[0].Field_Helpfulness_2} />
           </div>
           <br />
-          <div style={{}}>
+          <div>
             <span style={{ fontWeight: "bold", fontStyle: "italic" }}>
               Suggested Conversation 3: {Data[0].Goals_3}
             </span>
-            <div>
-              <span></span>
-              <span></span>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <span style={{ display: "flex", flexDirection: "column" }}>
+                <span>
+                  <span
+                    style={{
+                      fontStyle: "italic",
+                      textDecoration: "underline",
+                    }}>
+                    Potential Question:
+                  </span>
+                  <br />
+                  <span>{Data[0]["EQ Questions_3"]}</span>
+                </span>
+                <br />
+                <span>
+                  <span
+                    style={{
+                      fontStyle: "italic",
+                      textDecoration: "underline",
+                    }}>
+                    Resources:
+                  </span>
+                  <br />
+                  <span>
+                    Review <a>WEB046258</a> for the 'Planning for Retirement'
+                    report.
+                  </span>
+                </span>
+              </span>
+              <div>
+                <PieChart percentHelpful={Data[0].Field_Helpfulness_3} />
+              </div>
             </div>
-            <PieChart percentHelpful={Data[0].Field_Helpfulness_3} />
           </div>
         </>
       )}
