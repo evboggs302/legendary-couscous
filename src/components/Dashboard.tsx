@@ -1,6 +1,7 @@
 import * as React from "react";
 import logo from "../logo.svg";
-import { styled, createTheme, ThemeProvider } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@material-ui/core";
+import { styled } from "@mui/system";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -23,11 +24,13 @@ import CallSplitIcon from "@material-ui/icons/CallSplit";
 import NotesIcon from "@material-ui/icons/Notes";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import DataUsageIcon from "@mui/icons-material/DataUsage";
+import FiberNewIcon from "@material-ui/icons/FiberNew";
 import { secondaryListItems } from "./listItems";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Accounts from "./Accounts";
 import HeaderBar from "./HeaderBar";
+import InsightsModal from "./Modal";
 import { useAppSelector, useAppDispatch } from "../dux/store";
 import { toggleInsights } from "../dux/insightsSlice";
 
@@ -50,23 +53,16 @@ function Copyright(props: any) {
   );
 }
 
-// const drawerWidth: number = 240;
+const drawerWidth: number = 240;
 
-const Drawer = styled(MuiDrawer)(({ theme }) => ({
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
     position: "relative",
     whiteSpace: "nowrap",
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+    width: drawerWidth,
     boxSizing: "border-box",
-    overflowX: "hidden",
-    overflowY: "auto",
-    width: theme.spacing(7),
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9),
-    },
   },
 }));
 
@@ -87,20 +83,16 @@ function DashboardContent() {
 
   const { insights } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
-  console.log(insights);
 
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <HeaderBar open={open} />
-        <Drawer variant="permanent" open={true} sx={{ overflowY: "auto" }}>
+        <Drawer variant="permanent" open={true}>
           <StyledToolbar
             sx={{
-              backgroundColor: (theme) =>
-                theme.palette.mode === "dark"
-                  ? theme.palette.grey[100]
-                  : theme.palette.grey[900],
+              backgroundColor: "#212121",
             }}>
             <img alt="" src={logo} style={{ maxHeight: "45px" }} />
           </StyledToolbar>
@@ -124,11 +116,17 @@ function DashboardContent() {
               </ListItemIcon>
               <ListItemText primary="Notes" />
             </ListItem>
-            <ListItem button onClick={(e) => dispatch(toggleInsights())}>
+            <ListItem button onClick={() => dispatch(toggleInsights())}>
               <ListItemIcon>
                 <DataUsageIcon />
               </ListItemIcon>
-              <ListItemText primary="Insights" />
+              <ListItemText primary="360 Discovery" />
+              <ListItemIcon>
+                <FiberNewIcon
+                  fontSize="large"
+                  style={{ fill: "orange", paddingLeft: "18px" }}
+                />
+              </ListItemIcon>
             </ListItem>
             <ListItem button>
               <ListItemIcon>
@@ -186,6 +184,7 @@ function DashboardContent() {
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
+              {insights.open && <InsightsModal />}
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{

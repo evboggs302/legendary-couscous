@@ -32,7 +32,6 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   alignItems: "center",
   paddingTop: theme.spacing(1),
   paddingBottom: theme.spacing(2),
-  // Override media queries injected by theme.mixins.toolbar
   "@media all": {
     minHeight: 128,
   },
@@ -47,7 +46,7 @@ function HeaderBar({ open }: { open: boolean }) {
             theme.palette.mode === "dark"
               ? theme.palette.grey[100]
               : theme.palette.grey[900],
-          pr: "24px", // keep right padding when drawer closed
+          pr: "24px",
         }}>
         <Typography variant="h4" color="inherit" noWrap sx={{ flexGrow: 1 }}>
           Lady Gaga's Relationship
@@ -62,7 +61,7 @@ function HeaderBar({ open }: { open: boolean }) {
 
         {/* <SearchBar /> */}
         <IconButton color="inherit">
-          <Badge badgeContent={4} color="secondary">
+          <Badge badgeContent={4} color="primary">
             <Notifications />
           </Badge>
         </IconButton>
